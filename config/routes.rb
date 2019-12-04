@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :cart_items
   resources :items
   resources :users, only: [:show, :create]
   resources :login, only: [:create]
