@@ -5,8 +5,13 @@ class CartItemsController < ApplicationController
 		render json: CartItemsSerializer.new(@cart).serialized_json, include: "**"
 	end
 
+	def show
+		@cart_item = CartItem.find(params[:id])
+
+		render json: @cart_item
+	end
+
 	def create
-		# byebug
 		@cart = CartItem.create(create_cart_items_params)
 
 		if @cart.valid?
@@ -14,6 +19,14 @@ class CartItemsController < ApplicationController
 		else
 			render json: {errors: @cart.errors.full_messages}, status: 401
 		end
+	end
+
+	def destroy
+		@cart_item = cart_item.find(params[:id])
+
+		cart_item.destroy
+
+		render json: @cart_item
 	end
 
 private
