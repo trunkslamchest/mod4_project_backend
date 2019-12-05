@@ -22,9 +22,9 @@ class CartItemsController < ApplicationController
 	end
 
 	def destroy
-		@cart_item = cart_item.find(params[:id])
+		@cart_item = CartItem.find(params[:id])
 
-		cart_item.destroy
+		@cart_item.destroy
 
 		render json: @cart_item
 	end
@@ -32,7 +32,7 @@ class CartItemsController < ApplicationController
 private
 
 	def create_cart_items_params
-		params.permit(:user_id, :item_id)
+		params.permit(:user_id, :item_id, :cart_quantity)
 	end
 
 end
