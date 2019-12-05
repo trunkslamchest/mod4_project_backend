@@ -2,7 +2,6 @@ class CartItemsController < ApplicationController
 
 	def index
 		@cart = CartItem.all
-		# render json: @cart
 		render json: CartItemsSerializer.new(@cart).serialized_json, include: "**"
 	end
 
