@@ -7,7 +7,8 @@ class CartItemsController < ApplicationController
 	end
 
 	def show
-		@cart_item = CartItem.find(params[:id]).order(id: :desc)
+		@cart_item = CartItem.find(params[:id])
+		# .order(id: :desc)
 
 		render json: @cart_item
 	end
@@ -21,7 +22,7 @@ class CartItemsController < ApplicationController
 			render json: {errors: @cart.errors.full_messages}, status: 401
 		end
 	end
-	
+
 	def update
 		@cart_item = CartItem.find(params[:id])
 
